@@ -9,6 +9,10 @@ public class Entity
 	String name;
 	Image image;
 	
+	int width;
+	int height;
+	boolean isCircle = false;
+	
 	//Stats
 	int life;
 	int xp;
@@ -19,8 +23,25 @@ public class Entity
 	public Entity(String name, int x, int y)
 	{
 		this.name = name;
-		pos.x = x;
-		pos.y = y;
+		pos = new Point(x, y);
+	}
+	
+	public boolean isShot(Entity object) //1x1 projectile
+	{
+		if((object.getPosX() > pos.x) && (object.getPosX() < pos.x + width) 
+		&& (object.getPosY() > pos.y) && (object.getPosY() < pos.y + height))
+		{
+			return true;
+		}
+		else
+		{
+			return false;	
+		}
+	}
+	
+	public boolean isShot(Entity object, boolean isBigger)
+	{
+		return false;
 	}
 	
 	public String getName()
@@ -79,5 +100,19 @@ public class Entity
 		return image;
 	}
 	
+	public void setSize(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+	}
 	
+	public int getHeight()
+	{
+		return height;
+	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
 }
